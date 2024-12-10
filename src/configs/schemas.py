@@ -1,75 +1,75 @@
-
+# assign data type class on type key #Ticket MIDP-313
 CUSTOMER_SCHEMA = [
     {
         "name": "customer_id",
-        "type": "int",
+        "type": int,
         "required": True
     },
     {
         "name": "first_name",
-        "type": "string",
+        "type": str,
         "required": True
     },
     {
         "name": "last_name",
-        "type": "string",
+        "type": str,
         "required": True
     },
     {
         "name": "gender",
-        "type": "enum",
+        "type": str,
         "values": ["M", "F", "U"],
         "required": True
     },
     {
         "name": "email",
-        "type": "string",
+        "type": str,
         "required": True
     },
     {
         "name": "membership_status",
-        "type": "enum",
+        "type": str,
         "values": ["active", "inactive"],
         "required": True
     },
     {
         "name": "address",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "phone_number",
-        "type": "string",
+        "type": str,
         "required": False
     },
     {
         "name": "date_of_birth",
-        "type": "date",
+        "type": str,
         "format": "%Y-%m-%d",
         "required": True
     },
     {
         "name": "job",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "company",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "city",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "state",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "country",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "language",
-        "type": "enum",
+        "type": str,
         "values": ["en-US", "es-ES", "fr-FR"],
         "required": True
     }
@@ -78,37 +78,37 @@ CUSTOMER_SCHEMA = [
 SALES_SCHEMA = [
     {
         'name': 'sale_id',
-        'type': 'int',
+        'type': int,
         'required': True
     },
     {
         "name": "customer_id",
-        "type": "int",
+        "type": int,
         "required": True
     },
     {
         "name": "product_id",
-        "type": "string",
+        "type": str,
         "required": True
     },
     {
         "name": "quantity",
-        "type": "int",
+        "type": int,
         "required": True
     },
     {
         "name": "price_per_unit",
-        "type": "float",
+        "type": float,
         "required": True
     },
     {
         "name": "total_price",
-        "type": "float",
+        "type": float,
         "required": True
     },
     {
         "name": "sale_date",
-        "type": "date",
+        "type": str,
         "format": "%Y-%m-%d",
         "required": True
     }
@@ -117,26 +117,26 @@ SALES_SCHEMA = [
 PRODUCT_SCHEMA = [
     {
         "name": "name",
-        "type": "string",
+        "type": str,
         "required": True
     },
     {
         "name": "product_id",
-        "type": "string",
+        "type": str,
         "required": True
     },
     {
         "name": "price",
-        "type": "float",
+        "type": float,
         "required": True
     },
     {
         "name": "description",
-        "type": "string",
+        "type": str,
     },
     {
         "name": "creation_date",
-        "type": "date",
+        "type": str,
         "format": "%Y-%m-%d",
         "required": True
     }

@@ -4,6 +4,7 @@ from src.utils.files import get_saved_file, save_file, get_save_filename
 from src.utils.validation import validate_data
 import pandas as pd
 from uuid import uuid4
+import os
 
 
 def apply_scd2(old_df, new_df, key_cols, date, is_full=False):
@@ -130,18 +131,23 @@ def apply_scd2(old_df, new_df, key_cols, date, is_full=False):
         )
 
 
-def process_data(source_name, dataframe, config, date):
+def process_data(source_name, dataframe, config, date, file):
     sys_logger.info(f"Processing data for {source_name}")
     key_cols = config.get("key_columns",[])
     is_full = config.get('data_type') == 'full'
-
+    file_name = file.split(".")[0] # get file name with date#Ticket MIDP-313
     current_table = get_saved_file(source_name)
 
     clean_records, error_records = validate_data(source_name, dataframe)
 
-    if len(error_records) > 0:
-        sys_logger.warning(f"Found {len(error_records)} error records for {source_name}")
-        #TODO: save error records to a file
+    
+    sys_logger.warning(f"Found {len(error_records)} error records for {source_name}")
+    #TODO: save error records to a file #Ticket MIDP-313
+    outdir = './error_folder/'
+    if not os.path.exists(outdir):
+        os.makedir(outdir)
+        
+    error_records.to_csv(f"{outdir}/errors_{file_name}.csv")
 
     new_table = apply_scd2(
         current_table,

@@ -1,7 +1,7 @@
 
 from src.configs.file_configs import CONFIGS
 from src.utils.watermark import get_watermark_table, update_watermark_table, get_last_run_date
-from src.utils.files import get_read_func, get_files_to_process, get_file_date
+from src.utils.files import get_read_func, get_files_to_process, get_file_date , read_json
 from src.utils.dataframes import process_data
 from src.utils.logger import sys_logger
 
@@ -18,8 +18,12 @@ def run_ingestion():
         for file in sorted_files:
             sys_logger.info(f"Processing {file}")
             date = get_file_date(file)
-            df = read_func(location + file, **config.get('read_args', {}))
-            stats = process_data(source_name, df, config, date)
+            if read_func == read_json :
+                # df = read_func(location + file, **config.get('read_args', {}))
+                df = read_func(location + file)
+            else :
+                df = read_func(location + file, **config.get('read_args', {}))
+            stats = process_data(source_name, df, config, date, file)
             stats['file_name'] = file
             watermark_table = update_watermark_table(watermark_table, stats)
             sys_logger.info(f"Processed {file}")
