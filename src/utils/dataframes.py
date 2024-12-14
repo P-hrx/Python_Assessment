@@ -145,7 +145,7 @@ def process_data(source_name, dataframe, config, date, file):
     #TODO: save error records to a file #Ticket MIDP-313
     outdir = './error_folder/'
     if not os.path.exists(outdir):
-        os.makedir(outdir)
+        os.mkdir(outdir)
         
     error_records.to_csv(f"{outdir}/errors_{file_name}.csv")
 
